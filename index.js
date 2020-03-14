@@ -1,28 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const fs = require("fs");
+const loginRoute = require('./routers/loginR')
+const artistRoute = require('./routers/artists')
 
-app.use(express.static('public'))
+app.set('view engine', 'pug');
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
 
-app.get('/artistsList',(req,res)=>{
-    fs.readFile('data/artistsList.txt',(err,data)=>{
-        if(err){
-           return console.error(err);
-        }
-        return res.json(JSON.parse(data));
-    });
-});
+app.use(loginRoute);
+app.use(artistRoute);
 
-app.post('/artistsList',(req,res)=>{
-    const artists = req.body;
-    fs.writeFile('data/artistsList.txt',JSON.stringify(artists),'utf-8',err =>{
-        if(err){
-            return console.error(err);
-        }
-        return res.sendStatus(200);
-    });
+app.get('/',(req,res,next)=>{
+    return res.redirect(301,'/login');
 });
 
 app.listen(process.env.PORT || 3000,()=>console.log('Server ready'));

@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+head
+    title Lab 2
+    link(href="https://fonts.googleapis.com/css?family=Gelasio&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="/css/style.css" type="text/css")
+    link(rel="stylesheet" href="/css/lab2.css" type="text/css")   
+body
+    header
+        a.btn(href="/login") Logout
+    main
+        include searchBox.pug
+        include results.pug
+    script(type="text/javascript" src="/js/lab2.js")

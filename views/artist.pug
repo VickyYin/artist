@@ -1,0 +1,6 @@
+li.artistCard
+   img.artistImg(src=a.url)
+   div.artistText
+      h2.artistName= a.name
+      p.aritistDescription= a.about
+   a.btn.delete(href = "/artists/delete/" + a.id) Delete

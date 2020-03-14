@@ -1,0 +1,10 @@
+div#results 
+   form#artistForm.hider(action="/artists/add" method="post")
+      input(name="name" type = "text" maxLength ="40" placeholder = "Name" required)
+      input(name="about" type = "text" maxLength = "40" placeholder = "About" required)
+      input(name="url" type = "text" placeholder = "Image URL" required)
+      button#addButton.btn(type="submit") Add
+if artists.length > 0
+   ul.artistList 
+      each a in artists  
+         include artist.pug
